@@ -1,75 +1,204 @@
-/* Global Dark Background */
+/* ================================================= */
+/* SYSTEM DEFAULT (LIGHT MODE BASE) */
+/* ================================================= */
+
+:root {
+  --bg-main: #f6f8fa;
+  --text-main: #1f2328;
+  --card-bg: #ffffff;
+  --border-color: #d0d7de;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  --heading: #1f2328;
+  --label: #57606a;
+
+  --input-bg: #ffffff;
+  --input-text: #1f2328;
+  --input-border: #d0d7de;
+  --input-placeholder: #6e7781;
+  --focus-border: #0969da;
+
+  --btn-primary: #2da44e;
+  --btn-primary-hover: #2c974b;
+
+  --btn-success: #0969da;
+  --btn-success-hover: #218bff;
+
+  --link: #0969da;
+  --muted-text: #57606a;
+}
+
+/* ================================================= */
+/* SYSTEM DARK MODE AUTO */
+/* ================================================= */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-main: #0d1117;
+    --text-main: #e6edf3;
+    --card-bg: #161b22;
+    --border-color: #30363d;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+
+    --heading: #f0f6fc;
+    --label: #c9d1d9;
+
+    --input-bg: #0d1117;
+    --input-text: #e6edf3;
+    --input-border: #30363d;
+    --input-placeholder: #8b949e;
+    --focus-border: #58a6ff;
+
+    --btn-primary: #238636;
+    --btn-primary-hover: #2ea043;
+
+    --btn-success: #1f6feb;
+    --btn-success-hover: #388bfd;
+
+    --link: #58a6ff;
+    --muted-text: #c9d1d9;
+  }
+}
+
+/* ================================================= */
+/* MANUAL THEME OVERRIDES (PURE CSS) */
+/* ================================================= */
+
+/* ---------- MANUAL LIGHT ---------- */
+#theme-light:checked ~ * {
+  --bg-main: #f6f8fa;
+  --text-main: #1f2328;
+  --card-bg: #ffffff;
+  --border-color: #d0d7de;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  --heading: #1f2328;
+  --label: #57606a;
+
+  --input-bg: #ffffff;
+  --input-text: #1f2328;
+  --input-border: #d0d7de;
+  --input-placeholder: #6e7781;
+  --focus-border: #0969da;
+
+  --btn-primary: #2da44e;
+  --btn-primary-hover: #2c974b;
+
+  --btn-success: #0969da;
+  --btn-success-hover: #218bff;
+
+  --link: #0969da;
+  --muted-text: #57606a;
+}
+
+/* ---------- MANUAL DARK ---------- */
+#theme-dark:checked ~ * {
+  --bg-main: #0d1117;
+  --text-main: #e6edf3;
+  --card-bg: #161b22;
+  --border-color: #30363d;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+
+  --heading: #f0f6fc;
+  --label: #c9d1d9;
+
+  --input-bg: #0d1117;
+  --input-text: #e6edf3;
+  --input-border: #30363d;
+  --input-placeholder: #8b949e;
+  --focus-border: #58a6ff;
+
+  --btn-primary: #238636;
+  --btn-primary-hover: #2ea043;
+
+  --btn-success: #1f6feb;
+  --btn-success-hover: #388bfd;
+
+  --link: #58a6ff;
+  --muted-text: #c9d1d9;
+}
+
+/* ---------- SYSTEM MODE ---------- */
+#theme-system:checked ~ * {
+  
+  /* system media query controls theme */
+}
+
+/* ================================================= */
+/* GLOBAL STYLES */
+/* ================================================= */
+
 body {
-  background-color: #0d1117; /* GitHub dark */
-  color: #e6edf3;
+  background-color: var(--bg-main);
+  color: var(--text-main);
   font-family: 'Segoe UI', sans-serif;
 }
 
 /* Auth Card */
 .auth-card {
-  background-color: #161b22;
-  border: 1px solid #30363d;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
   border-radius: 14px;
-  color: #e6edf3;
+  color: var(--text-main);
 }
 
-/* Card shadow (subtle, not flashy) */
+/* Shadow */
 .shadow {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+  box-shadow: var(--shadow) !important;
 }
 
 /* Headings */
 .auth-card h3 {
-  color: #f0f6fc;
+  color: var(--heading);
   font-weight: 600;
 }
 
 /* Labels */
 .form-label {
-  color: #c9d1d9;
+  color: var(--label);
 }
 
 /* Inputs */
 .form-control {
-  background-color: #0d1117;
-  border: 1px solid #30363d;
-  color: #e6edf3;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--input-text);
   border-radius: 10px;
 }
 
 .form-control::placeholder {
-  color: #8b949e;
+  color: var(--input-placeholder);
 }
 
 .form-control:focus {
-  background-color: #0d1117;
-  color: #e6edf3;
-  border-color: #58a6ff;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  border-color: var(--focus-border);
   box-shadow: none;
 }
 
 /* Buttons */
 .btn-primary {
-  background-color: #238636;
+  background-color: var(--btn-primary);
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: #2ea043;
+  background-color: var(--btn-primary-hover);
 }
 
 .btn-success {
-  background-color: #1f6feb;
+  background-color: var(--btn-success);
   border: none;
 }
 
 .btn-success:hover {
-  background-color: #388bfd;
+  background-color: var(--btn-success-hover);
 }
 
 /* Links */
 a {
-  color: #58a6ff;
+  color: var(--link);
   text-decoration: none;
 }
 
@@ -79,5 +208,47 @@ a:hover {
 
 /* Muted text */
 .text-center {
-  color: #c9d1d9;
+  color: var(--muted-text);
+}
+
+/* ================================================= */
+/* THEME TOGGLE UI */
+/* ================================================= */
+
+.theme-switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 6px;
+  display: flex;
+  gap: 6px;
+  box-shadow: var(--shadow);
+  z-index: 9999;
+}
+
+.theme-switcher input {
+  display: none;
+}
+
+.theme-switcher label {
+  cursor: pointer;
+  font-size: 18px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: var(--text-main);
+  transition: 0.2s ease;
+}
+
+.theme-switcher label:hover {
+  background: rgba(100,100,100,0.15);
+}
+
+/* Active indicator */
+#theme-light:checked + input + input + label,
+#theme-dark:checked + input + label,
+#theme-system:checked + label {
+  background: rgba(100,100,100,0.25);
 }
