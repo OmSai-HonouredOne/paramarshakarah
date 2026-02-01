@@ -1,0 +1,83 @@
+/* Global Dark Background */
+body {
+  background-color: #0d1117; /* GitHub dark */
+  color: #e6edf3;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Auth Card */
+.auth-card {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 14px;
+  color: #e6edf3;
+}
+
+/* Card shadow (subtle, not flashy) */
+.shadow {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Headings */
+.auth-card h3 {
+  color: #f0f6fc;
+  font-weight: 600;
+}
+
+/* Labels */
+.form-label {
+  color: #c9d1d9;
+}
+
+/* Inputs */
+.form-control {
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  color: #e6edf3;
+  border-radius: 10px;
+}
+
+.form-control::placeholder {
+  color: #8b949e;
+}
+
+.form-control:focus {
+  background-color: #0d1117;
+  color: #e6edf3;
+  border-color: #58a6ff;
+  box-shadow: none;
+}
+
+/* Buttons */
+.btn-primary {
+  background-color: #238636;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #2ea043;
+}
+
+.btn-success {
+  background-color: #1f6feb;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #388bfd;
+}
+
+/* Links */
+a {
+  color: #58a6ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Muted text */
+.text-center {
+  color: #c9d1d9;
+}

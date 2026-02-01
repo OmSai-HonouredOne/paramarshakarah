@@ -1,0 +1,1 @@
+web: gunicorn rrm:create_app() --workers 1 --threads 2 --timeout 120 --max-requests 500 --max-requests-jitter 50
