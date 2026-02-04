@@ -30,12 +30,17 @@
 
   <div class="mb-3">
     <label class="form-label">Password</label>
-    <input type="password" class="form-control" placeholder="Create password" name="password" required>
+    <input type="password" class="form-control" placeholder="Create password" id="password" name="password" required>
+  </div>
+  
+  <div class="mb-3">
+    <label class="form-label">Confirm Password</label>
+    <input type="password" class="form-control" placeholder="Confirm password" id="cpassword" name="confirm_password" required>
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Confirm Password</label>
-    <input type="password" class="form-control" placeholder="Confirm password" name="confirm_password" required>
+    <input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePassword()">
+    <label for="showPassword" class="form-label">Show Password</label>
   </div>
 
   <button type="submit" class="btn btn-success w-100">Register</button>
