@@ -4,9 +4,11 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 from cgs.db import query_all, query_one, execute
+from cgs.askLLM import llm
 
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
+
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
@@ -26,15 +28,18 @@ def register():
             error = f"User with Registration Number: {regno} is already registered."
 
         if error is None:
+            llm_output = llm(skills, target_jobs)
             execute(
-                'INSERT INTO users (regno, name, email, password, skills, target_jobs) VALUES (%s, %s, %s, %s, %s, %s)',
-                (regno, name, email, generate_password_hash(password), skills, target_jobs)
+                'INSERT INTO users (regno, name, email, password, skills, target_jobs, eligible, skills_to_learn, courses, bonus_skills, bonus_skills_courses) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
+                (regno, name, email, generate_password_hash(password), skills, target_jobs, ','.join(llm_output[0]), ','.join(llm_output[1]), ','.join(llm_output[2]), ','.join(llm_output[3]), ','.join(llm_output[4]))
             )
+
             return redirect(url_for('auth.login'))
 
         flash(error)
 
     return render_template('auth/register.html')
+
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
@@ -60,21 +65,30 @@ def login():
 
     return render_template('auth/login.html')
 
+
 @bp.before_app_request
 def load_logged_in_user():
     regno = session.get('regno')
 
     if regno is None:
         g.user = None
+    
     else:
-        g.user = query_one(
-            'SELECT * FROM users WHERE regno = %s', (regno,)
-        )
+        g.user = query_one('SELECT * FROM users WHERE regno = %s', (regno,))
+        g.user['skills'] = g.user['skills'].split(',')
+        g.user['target_jobs'] = g.user['target_jobs'].split(',')
+        g.user['eligible'] = g.user['eligible'].split(',')
+        g.user['skills_to_learn'] = g.user['skills_to_learn'].split(',')
+        g.user['courses'] = g.user['courses'].split(',')
+        g.user['bonus_skills'] = g.user['bonus_skills'].split(',')
+        g.user['bonus_skills_courses'] = g.user['bonus_skills_courses'].split(',')
+    
 
 @bp.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
 
 def login_required(view):
     @functools.wraps(view)

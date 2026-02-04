@@ -1,3 +1,5 @@
 .venv/
 
 .env
+
+cgs/__pycache__/

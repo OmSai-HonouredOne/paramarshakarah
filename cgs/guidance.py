@@ -4,6 +4,7 @@ from flask import (
 )
 from cgs.db import query_all, query_one, execute
 from cgs.auth import login_required
+from cgs.askLLM import llm
 
 bp = Blueprint('guidance', __name__)
 
@@ -14,4 +15,4 @@ def index():
 @bp.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('guidance/dashboard.html')
+    return render_template('guidance/dashboard.html', user=g.user)

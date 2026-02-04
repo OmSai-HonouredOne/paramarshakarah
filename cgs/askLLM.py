@@ -2,47 +2,23 @@ from google import genai
 from dotenv import load_dotenv
 import os
 
-# YOU GET OUTPUT FROM THIS FILE FROM THE FUNCTION llm(prompt)
 
-def promptset(gapSkills, extraSkills, userSkills, requiredSkills):
-    # Retrieve Username from DB here.
-    # Maybe even job name??
-    username = "WoozyDragon"
-
-    if not gapSkills and not extraSkills:
-        prompt = f"""
-            You are Margadarshaka, a career counsellor. A user has just been through our system and we have evaluated them to have exactly 
-            the same skills as the job of their liking demands, as per the job description provided to us. 
-            What you will now do is generate a good cover letter for {username} who has {userSkills}.
-        """
-
-    elif not gapSkills and extraSkills:
-        prompt = f"""
-            You are Margadarshaka, a career counsellor. A user has just been through our system and we have evaluated them to have more skills
-            than what is needed for the job (which is a good thing!). What you will do now is generate a cool cover letter for {username} having {userSkills} and you can
-            even highlight they have {str(extraSkills)} extra skills as well! And give them some advice...
-        """
-
-    else:
-        prompt = f"""
-            You are Margadarshaka, a career counsellor. A user has just been through our system and we have evaluated them to have a gap in their
-            skillset, meaning they have NOT completed {gapSkills} which are needed by the job (which are {requiredSkills}). Extra Skills include {extraSkills} (ignore if None).
-            They have so far completed {userSkills}.
-            What you must do now is to scour the internet, find a good career path in like 6 months to cover the required skills and close the gap
-            They must adhere to latest market trends as well. Give links and you can even separate free resources from paid ones.
-            Pick ones which are very relevant and which are very reliable.
-        """
-        
-    return llm(prompt)
-
-def llm(prompt):
+def llm(skills, target_jobs):
     load_dotenv()
     env = os.getenv("GEMINI_API_KEY")
     client = genai.Client(api_key=env)
-
+    prompt = f'''
+    there is a list of skills: {skills}
+    and there is a list of target jobs: {target_jobs}
+    now give an output of a python list in which there will be 5 lists,
+    1st list will contain boolean values of if he is [eligible(write 2 in string in the list) or close(write 1 in string in the list) or not eligible(write 0 in stringin the list)] for now in the same indexes of target jobs according to list of skills
+    2nd list is the list of containing all the required skills needed to learn(at max 5-6) for the target jobs that are not in the skills list
+    3rd list will be the list of one course corresponding to the 2nd list but just one course for each skill with same index of the skill in 2nd list.(just the links only, can be from youtube, udemy or coursera)
+    4th list will be the list of bonus skills(4-5) which are not neccessary but good to know
+    5th list will be the list of one course corresponding to the 4th list but just one course for each skill with same index of the skill in 4th list.
+    give these 5 lists in a list(in the same order as I gave to you) and in output give nothing else except the list, so that I can just eval(output you gave) and get the list... remember give not an extra character not even a backtick, dont even write python code block, just the list only
+    '''
     response = client.models.generate_content(
-        model="gemini-3-flash-preview", contents=prompt
+        model="gemma-3-12b-it", contents=prompt
     )
-    print(response.text)
-    return response.text
-
+    return eval(response.text)

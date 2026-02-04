@@ -1,120 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>CareerPath AI | Dashboard</title>
 
-<link rel="stylesheet" href='{{ url_for("static", filename="navbar.css")}}'>
-<link rel="stylesheet" href='{{ url_for("static",filename="dashboard.css")}}'>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <title>CareerPath AI | Dashboard</title>
+
+  <link rel="stylesheet" href='{{ url_for("static", filename="css/navbar.css")}}'>
+  <link rel="stylesheet" href='{{ url_for("static",filename="css/dashboard.css")}}'>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    a {
+      color: cyan;
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
-<nav class="navbar">
-  <div class="nav-left">CareerPath AI</div>
-  <div class="nav-right">
-    <span class="username">Satyaki</span>
-    <a href="#" class="logout">Logout</a>
-  </div>
-</nav>
-
-<!-- ================= BREADCRUMB ================= -->
-<div class="breadcrumb-container">
-  <div class="breadcrumb">
-    <a href="#">Home</a><span class="sep">›</span>
-    <a href="#">Dashboard</a>
-  </div>
-</div>
-
-<!-- ================= DASHBOARD ================= -->
-<main class="dashboard">
-
-<div class="dashboard-container">
-
-<!-- ================= SECTION 1 ================= -->
-<section class="dashboard-section">
-<h2 class="section-title">Profile</h2>
-<div class="card-grid">
-
-<div class="card">
-<div class="card-header">Profile Overview 
-  <a href="edit.html?section=profile" class="edit-btn">Edit</a>
-</div>
-<p>Name: Satyaki</p>
-<p>Reg No: 23CS1045</p>
-<p>Email: satyaki@example.com</p>
-</div>
-
-<div class="card">
-<div class="card-header">Current Skills 
-  <a href="edit.html?section=skills" class="edit-btn">Edit</a>
-</div>
-<div class="skill-row">Python <span class="badge green">Skilled</span></div>
-<div class="skill-row">Flask <span class="badge orange">Underskilled</span></div>
-<div class="skill-row">C <span class="badge red">Redundant</span></div>
-</div>
-
-<div class="card">
-<div class="card-header">Target Job Roles 
-  <a href="edit.html?section=jobs" class="edit-btn">Edit</a>
-</div>
-<div class="skill-row">Backend Developer <span class="badge green">Eligible</span></div>
-<div class="skill-row">Software Engineer <span class="badge red">Not Ready</span></div>
-</div>
-
-</div>
-</section>
-
-<!-- ================= SECTION 2 ================= -->
-<section class="dashboard-section">
-<h2 class="section-title">Courses & Growth</h2>
-<div class="card-grid">
-
-<div class="card">
-<div class="card-header">Skills To Learn</div>
-<div class="skill-row">DSA <span class="badge red">High Priority</span></div>
-<div class="skill-row">System Design <span class="badge orange">Medium Priority</span></div>
-<div class="skill-row">Docker <span class="badge green">Low Priority</span></div>
-</div>
-
-<div class="card">
-<div class="card-header">Bonus Skills</div>
-<p>GitHub Actions</p>
-<p>Linux</p>
-</div>
-
-<div class="card">
-<div class="card-header">Recommended Courses</div>
-<p>Python Backend Mastery</p>
-<p>DSA Bootcamp</p>
-</div>
-
-</div>
-</section>
-
-</div>
-</main>
-
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-  <div class="footer-inner">
-
-    <!-- Social Icons -->
-    <div class="footer-socials">
-      <a href="#" class="social-icon">▶</a>
-      <a href="#" class="social-icon">◎</a>
-      <a href="#" class="social-icon">f</a>
+  <!-- ================= NAVBAR ================= -->
+  <nav class="navbar">
+    <div class="nav-left">CareerPath AI</div>
+    <div class="nav-right">
+      <span class="username">{{ user['name'] }}</span>
+      <a href="#" class="logout">Logout</a>
     </div>
+  </nav>
 
-    <!-- Copyright -->
-    <div class="footer-text">
-      Copyright © 2026 <span>Gypsy Danger</span> — All Rights Reserved
+  <!-- ================= BREADCRUMB ================= -->
+  <div class="breadcrumb-container">
+    <div class="breadcrumb">
+      <a href="#">Home</a><span class="sep">›</span>
+      <a href="#">Dashboard</a>
     </div>
-
   </div>
-</footer>
+
+  <!-- ================= DASHBOARD ================= -->
+  <main class="dashboard">
+
+    <div class="dashboard-container">
+
+      <!-- ================= SECTION 1 ================= -->
+      <section class="dashboard-section">
+        <h2 class="section-title">Profile</h2>
+        <div class="card-grid">
+
+          <div class="card">
+            <div class="card-header">Profile Overview
+              <a href="edit.html?section=profile" class="edit-btn">Edit</a>
+            </div>
+            <p>Name: {{ user['name'] }}</p>
+            <p>Reg No: {{ user['regno'] }}</p>
+            <p>Email: {{ user['email'] }}</p>
+          </div>
+
+          <div class="card">
+            <div class="card-header">Current Skills
+              <a href="edit.html?section=skills" class="edit-btn">Edit</a>
+            </div>
+            {% for skill in user['skills'] %}
+            <div class="skill-row">{{ skill }}</div>
+            {% endfor %}
+          </div>
+
+          <div class="card">
+            <div class="card-header">Target Job Roles
+              <a href="edit.html?section=jobs" class="edit-btn">Edit</a>
+            </div>
+            {% for i in range(user['target_jobs']|length) %}
+            <div class="skill-row">{{ user['target_jobs'][i] }}
+              {% if user['eligible'][i] == '2' %}
+              <span class="badge green">Eligible</span>
+              {% elif user['eligible'][i] == '1' %}
+              <span class="badge orange">Close</span>
+              {% else %}
+              <span class="badge red">Not Eligible</span>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= SECTION 2 ================= -->
+      <section class="dashboard-section">
+        <h2 class="section-title">Courses & Growth</h2>
+        <div class="card-grid">
+
+          <div class="card">
+            <div class="card-header">Skills To Learn</div>
+            {% for skill in user['skills_to_learn'] %}
+            <div class="skill-row">{{ skill }}</div>
+            {% endfor %}
+          </div>
+
+          <div class="card">
+            <div class="card-header">Bonus Skills</div>
+            {% for skill in user['bonus_skills'] %}
+            <div class="skill-row">{{ skill }}</div>
+            {% endfor %}
+          </div>
+
+          <div class="card">
+            <div class="card-header">Recommended Courses</div>
+            {% for course in user['courses'] %}
+            <!-- remove blue font color from a tag -->
+
+            <div class="skill-row"><a href="{{ course }}" target="_blank">{{ course }}</a></div> 
+            {% endfor %}
+          </div>
+
+          <div class="card">
+            <!-- now for the bonus skills courses after a heading -->
+            <div class="card-header">Bonus Skills Courses</div>
+            {% for course in user['bonus_skills_courses'] %}
+            <div class="skill-row"><a href="{{ course }}" target="_blank">{{ course }}</a></div>
+            {% endfor %}
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <div class="footer-inner">
+
+      <!-- Social Icons -->
+      <div class="footer-socials">
+        <a href="#" class="social-icon">▶</a>
+        <a href="#" class="social-icon">◎</a>
+        <a href="#" class="social-icon">f</a>
+      </div>
+
+      <!-- Copyright -->
+      <div class="footer-text">
+        Copyright © 2026 <span>Gypsy Danger</span> — All Rights Reserved
+      </div>
+
+    </div>
+  </footer>
 
 </body>
+
 </html>
