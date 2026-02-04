@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CareerPath AI | Dashboard</title>
 
   <link rel="stylesheet" href='{{ url_for("static", filename="css/navbar.css")}}'>
@@ -10,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-
     a {
       color: cyan;
       text-decoration: none;
@@ -23,9 +23,17 @@
   <!-- ================= NAVBAR ================= -->
   <nav class="navbar">
     <div class="nav-left">CareerPath AI</div>
-    <div class="nav-right">
-      <span class="username">{{ user['name'] }}</span>
-      <a href="#" class="logout">Logout</a>
+
+    <!--Mobile Toggle-->
+    <!-- <div class="menu-toggle" id="menuToggle">☰</div> -->
+
+    <div class="nav-right" id="navMenu">
+      <!-- <span class="username">{{ user['name'] }}</span> -->
+
+      <div class="nav-actions">
+        <a href="edit.html" class="nav-btn edit-btn">Edit</a>
+        <a href="{{ url_for('auth.logout') }}" class="nav-btn logout-btn">Logout</a>
+      </div>
     </div>
   </nav>
 
@@ -49,7 +57,7 @@
 
           <div class="card">
             <div class="card-header">Profile Overview
-              <a href="edit.html?section=profile" class="edit-btn">Edit</a>
+
             </div>
             <p>Name: {{ user['name'] }}</p>
             <p>Reg No: {{ user['regno'] }}</p>
@@ -58,7 +66,7 @@
 
           <div class="card">
             <div class="card-header">Current Skills
-              <a href="edit.html?section=skills" class="edit-btn">Edit</a>
+
             </div>
             {% for skill in user['skills'] %}
             <div class="skill-row">{{ skill }}</div>
@@ -67,7 +75,7 @@
 
           <div class="card">
             <div class="card-header">Target Job Roles
-              <a href="edit.html?section=jobs" class="edit-btn">Edit</a>
+
             </div>
             {% for i in range(user['target_jobs']|length) %}
             <div class="skill-row">{{ user['target_jobs'][i] }}
@@ -109,7 +117,7 @@
             {% for course in user['courses'] %}
             <!-- remove blue font color from a tag -->
 
-            <div class="skill-row"><a href="{{ course }}" target="_blank">{{ course }}</a></div> 
+            <div class="skill-row"><a href="{{ course }}" target="_blank">{{ course }}</a></div>
             {% endfor %}
           </div>
 
@@ -145,7 +153,18 @@
 
     </div>
   </footer>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
 
+    if(menuToggle && navMenu){
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
+    }
+  });
+</script>
 </body>
 
 </html>

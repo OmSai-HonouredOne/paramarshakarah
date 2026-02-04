@@ -1,16 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareerPath AI | Resume-to-Job Matcher</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
 </head>
+
 <body>
-    <nav>
-        <a href="/">Guidance</a>
-        <a href="/dashboard">Dashboard</a>
-        <a href="/auth/login">Login</a>
-        <a href="/auth/register">Register</a>
-    </nav>
+
+<!-- HERO SECTION -->
+<section class="hero" id="hero">
+  <div class="container">
+    <h1>CareerPath AI</h1>
+    <p>
+      AI-powered Resume-to-Job Matcher & Skill Gap Analyzer using GenAI and LLMs. 
+      We don’t match keywords — we understand your potential.
+    </p>
+
+    <div class="hero-buttons" id="login-area">
+      <a href="login.html" class="btn btn-primary">Login</a>
+      <button class="btn btn-outline" onclick="scrollToSection()">Learn More</button>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="section" id="what-we-do">
+  <div class="container">
+    <h2>What We Do</h2>
+
+    <div class="features">
+      <div class="card">
+        <h3>Semantic Skill Matching</h3>
+        <p>Understands relationships between skills (e.g. PyTorch → Deep Learning → AI Engineer), not just keywords.</p>
+      </div>
+
+      <div class="card">
+        <h3>Skill Gap Detection</h3>
+        <p>Identifies your missing blocks compared to real industry job roles.</p>
+      </div>
+
+      <div class="card">
+        <h3>AI Career Counselor</h3>
+        <p>Personalized AI mentor that guides your learning and career growth.</p>
+      </div>
+
+      <div class="card">
+        <h3>ROI-based Learning</h3>
+        <p>Suggests certifications & courses with maximum career return on investment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <h2>How It Works</h2>
+
+    <div class="timeline">
+      <div class="step"><h4>1. Upload Resume</h4><p>System extracts skills using NLP + embeddings.</p></div>
+      <div class="step"><h4>2. Semantic Mapping</h4><p>Skills mapped in high-dimensional embedding space.</p></div>
+      <div class="step"><h4>3. Market Matching</h4><p>Cross-referenced with live job market demands.</p></div>
+      <div class="step"><h4>4. Gap Analysis</h4><p>Missing skills and weak areas identified.</p></div>
+      <div class="step"><h4>5. AI Roadmap</h4><p>6-month personalized learning roadmap generated.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2>Build Your Future with AI</h2>
+    <p>
+      Stop guessing what to learn. Let AI design your career roadmap with precision, intelligence, and personalization.
+    </p>
+    <button class="btn btn-primary" onclick="scrollToLogin()">Start Your AI Career Path</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>PS ID: HY26-02 | Career Path Optimizer (GenAI & LLMs) | Contributed by Training & Placement Cell, OUTR</p>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+function scrollToSection() {
+  document.getElementById("what-we-do").scrollIntoView({ behavior: "smooth" });
+}
+
+function scrollToLogin() {
+  document.getElementById("login-area").scrollIntoView({ behavior: "smooth" });
+}
+</script>
+
 </body>
 </html>
+
