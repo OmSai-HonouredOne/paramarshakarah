@@ -1,0 +1,220 @@
+/* ================= GLOBAL ================= */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #020617;
+  color: #e5e7eb;
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+
+/* ================= DASHBOARD CONTAINER ================= */
+.dashboard-container{
+  background: #020617;
+  min-height: 100vh;
+  padding: 30px;
+}
+
+/* ================= SECTIONS ================= */
+.dashboard-section{
+  margin-bottom: 40px;
+}
+
+.section-title{
+  font-size: 22px;
+  margin-bottom: 16px;
+  color: #38bdf8;
+}
+
+/* ================= GRID ================= */
+.card-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ================= CARDS ================= */
+.card{
+  background: radial-gradient(circle at top, #020617, #020617);
+  border: 1px solid #0f172a;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 0 25px rgba(56,189,248,0.05);
+
+  /* hover prep */
+  transition: 
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* 🔥 FLOATING HOVER EFFECT */
+.card:hover{
+  transform: translateY(-8px) scale(1.01);
+  border-color: #38bdf8;
+  box-shadow: 
+    0 25px 60px rgba(56,189,248,0.18),
+    0 0 25px rgba(56,189,248,0.15);
+}
+
+/* ================= CARD HEADER ================= */
+.card-header{
+  display:flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* ================= EDIT BUTTON ================= */
+.edit-btn{
+  color:#38bdf8;
+  cursor:pointer;
+  font-size: 13px;
+  opacity: 0.6;
+  transition: 0.25s ease;
+}
+
+.card:hover .edit-btn{
+  opacity: 1;
+  text-shadow: 0 0 8px rgba(56,189,248,0.6);
+}
+
+.edit-btn:hover{
+  text-decoration: underline;
+  transform: translateX(3px);
+}
+
+/* ================= SKILL ROW ================= */
+.skill-row{
+  display:flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed #0f172a;
+}
+
+/* ================= BADGES ================= */
+.badge{
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Zones */
+.green{ 
+  background:#052e16; 
+  color:#22c55e; 
+  box-shadow: 0 0 10px rgba(34,197,94,0.2);
+}
+
+.orange{ 
+  background:#2a1500; 
+  color:#fb923c; 
+  box-shadow: 0 0 10px rgba(251,146,60,0.2);
+}
+
+.red{ 
+  background:#2a0505; 
+  color:#ef4444; 
+  box-shadow: 0 0 10px rgba(239,68,68,0.2);
+}
+
+/* ================= BREADCRUMB ================= */
+.breadcrumb-container{
+  background: #020617;
+  padding: 12px 32px;
+  border-bottom: 1px solid #0f172a;
+}
+
+.breadcrumb{
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.breadcrumb a{
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover{
+  text-decoration: underline;
+}
+
+.sep{
+  margin: 0 6px;
+  color: #64748b;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 1100px){
+  .card-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px){
+  .card-grid{
+    grid-template-columns: 1fr;
+  }
+}
+/* ================= FOOTER (BLUE NEON STYLE) ================= */
+
+.footer {
+  background: radial-gradient(circle at top, #050b1a, #020617 70%);
+  padding: 50px 20px;
+  border-top: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+.footer-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Social Icons */
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: 18px;
+}
+
+.social-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #0ea5e9, #2563eb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #020617;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow:
+    0 0 12px rgba(56, 189, 248, 0.45),
+    0 0 25px rgba(37, 99, 235, 0.25);
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow:
+    0 0 18px rgba(56, 189, 248, 0.75),
+    0 0 45px rgba(37, 99, 235, 0.55);
+}
+
+/* Footer Text */
+.footer-text {
+  font-size: 15px;
+  color: #e5e7eb;
+  letter-spacing: 0.3px;
+  opacity: 0.9;
+}
+
+.footer-text span {
+  color: #38bdf8;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+

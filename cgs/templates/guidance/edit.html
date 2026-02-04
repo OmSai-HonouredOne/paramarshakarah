@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Edit Dashboard | CareerPath AI</title>
+
+<link rel="stylesheet" href="navbar.css">
+<link rel="stylesheet" href="edit.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-left">CareerPath AI</div>
+  <div class="nav-right">
+    <span class="username">Satyaki</span>
+    <a href="dashboard.html" class="logout">Back</a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-container">
+  <div class="breadcrumb" id="breadcrumb"></div>
+</div>
+
+<!-- EDIT CONTAINER -->
+<main class="edit-container">
+
+  <div class="edit-card">
+    <h2 id="editTitle">Edit</h2>
+
+    <form class="edit-form">
+
+      <!-- Profile -->
+      <div class="edit-section" id="profileSection">
+        <label>Name</label>
+        <input type="text" value="Satyaki">
+
+        <label>Reg No</label>
+        <input type="text" value="23CS1045">
+
+        <label>Email</label>
+        <input type="email" value="satyaki@example.com">
+      </div>
+
+      <!-- Skills -->
+      <div class="edit-section" id="skillsSection">
+        <label>Skills</label>
+        <div class="dynamic-list" id="skillsList">
+          <div class="list-item">
+            <input type="text" value="Python">
+            <button type="button" onclick="removeItem(this)">−</button>
+          </div>
+          <div class="list-item">
+            <input type="text" value="Flask">
+            <button type="button" onclick="removeItem(this)">−</button>
+          </div>
+        </div>
+        <button type="button" class="add-btn" onclick="addItem('skillsList')">+ Add Skill</button>
+      </div>
+
+      <!-- Jobs -->
+      <div class="edit-section" id="jobsSection">
+        <label>Job Roles</label>
+        <div class="dynamic-list" id="jobsList">
+          <div class="list-item">
+            <input type="text" value="Backend Developer">
+            <button type="button" onclick="removeItem(this)">−</button>
+          </div>
+        </div>
+        <button type="button" class="add-btn" onclick="addItem('jobsList')">+ Add Role</button>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="form-actions">
+        <a href="dashboard.html" class="cancel-btn">Cancel</a>
+        <button type="submit" class="save-btn">Save Changes</button>
+      </div>
+
+    </form>
+  </div>
+
+</main>
+
+<!-- ================= JS ================= -->
+<script>
+/* -------- Section Routing -------- */
+const params = new URLSearchParams(window.location.search);
+const section = params.get("section");
+
+const profileSection = document.getElementById("profileSection");
+const skillsSection = document.getElementById("skillsSection");
+const jobsSection = document.getElementById("jobsSection");
+
+profileSection.style.display = "none";
+skillsSection.style.display = "none";
+jobsSection.style.display = "none";
+
+let sectionName = "Edit";
+
+if(section === "profile"){
+  profileSection.style.display = "block";
+  sectionName = "Edit Profile";
+}
+
+if(section === "skills"){
+  skillsSection.style.display = "block";
+  sectionName = "Edit Skills";
+}
+
+if(section === "jobs"){
+  jobsSection.style.display = "block";
+  sectionName = "Edit Job Roles";
+}
+
+document.getElementById("editTitle").innerText = sectionName;
+
+/* -------- Breadcrumb -------- */
+document.getElementById("breadcrumb").innerHTML = `
+  <a href="dashboard.html">Home</a>
+  <span>›</span>
+  <a href="dashboard.html">Dashboard</a>
+  <span>›</span>
+  <span>${sectionName}</span>
+`;
+
+/* -------- Dynamic Add/Remove -------- */
+function addItem(listId){
+  const list = document.getElementById(listId);
+
+  const div = document.createElement("div");
+  div.className = "list-item";
+
+  div.innerHTML = `
+    <input type="text" placeholder="New item">
+    <button type="button" onclick="removeItem(this)">−</button>
+  `;
+
+  list.appendChild(div);
+  div.querySelector("input").focus();
+}
+
+function removeItem(btn){
+  btn.parentElement.remove();
+}
+</script>
+
+</body>
+</html>
+

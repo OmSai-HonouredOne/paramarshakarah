@@ -1,0 +1,155 @@
+body{
+  background:#020617;
+  color:#e5e7eb;
+  font-family:'Inter',sans-serif;
+}
+
+/* Breadcrumb */
+.breadcrumb-container{
+  background:#020617;
+  border-bottom:1px solid #1e293b;
+  padding:12px 32px;
+}
+
+.breadcrumb{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  color:#94a3b8;
+}
+
+.breadcrumb a{
+  color:#38bdf8;
+  text-decoration:none;
+}
+
+.breadcrumb a:hover{
+  text-decoration:underline;
+}
+
+/* Layout */
+.edit-container{
+  min-height: calc(100vh - 120px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px;
+}
+
+.edit-card{
+  width:480px;
+  max-width:100%;
+  background:#020617;
+  border:1px solid #38bdf8;
+  border-radius:16px;
+  padding:28px;
+  box-shadow:0 0 40px rgba(56,189,248,0.25);
+}
+
+.edit-card h2{
+  margin-bottom:20px;
+  color:#38bdf8;
+}
+
+/* Form */
+.edit-form{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.edit-section{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+label{
+  font-size:13px;
+  opacity:0.8;
+}
+
+input{
+  background:#020617;
+  border:1px solid #0f172a;
+  padding:10px;
+  border-radius:8px;
+  color:#e5e7eb;
+}
+
+input:focus{
+  border-color:#38bdf8;
+  box-shadow:0 0 10px rgba(56,189,248,0.3);
+  outline:none;
+}
+
+/* Dynamic list */
+.dynamic-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.list-item{
+  display:flex;
+  gap:10px;
+  animation: fadeIn 0.25s ease;
+}
+
+.list-item button{
+  background:#2a0505;
+  color:#ef4444;
+  border:none;
+  border-radius:8px;
+  padding:0 12px;
+  cursor:pointer;
+}
+
+.add-btn{
+  background:#052e16;
+  color:#22c55e;
+  border:none;
+  border-radius:8px;
+  padding:8px;
+  cursor:pointer;
+  margin-top:6px;
+}
+
+/* Actions */
+.form-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:12px;
+  margin-top:10px;
+}
+
+.cancel-btn{
+  color:#e5e7eb;
+  text-decoration:none;
+  padding:10px 16px;
+  border-radius:8px;
+  background:#0f172a;
+}
+
+.save-btn{
+  background:#38bdf8;
+  color:#020617;
+  border:none;
+  padding:10px 18px;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 0 15px rgba(56,189,248,0.5);
+}
+
+.save-btn:hover{
+  transform:scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(6px);}
+  to{opacity:1; transform:translateY(0);}
+}
+

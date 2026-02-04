@@ -1,98 +1,8 @@
 /* ================================================= */
-/* SYSTEM DEFAULT (LIGHT MODE BASE) */
+/* DARK MODE ONLY THEME */
 /* ================================================= */
 
 :root {
-  --bg-main: #f6f8fa;
-  --text-main: #1f2328;
-  --card-bg: #ffffff;
-  --border-color: #d0d7de;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-
-  --heading: #1f2328;
-  --label: #57606a;
-
-  --input-bg: #ffffff;
-  --input-text: #1f2328;
-  --input-border: #d0d7de;
-  --input-placeholder: #6e7781;
-  --focus-border: #0969da;
-
-  --btn-primary: #2da44e;
-  --btn-primary-hover: #2c974b;
-
-  --btn-success: #0969da;
-  --btn-success-hover: #218bff;
-
-  --link: #0969da;
-  --muted-text: #57606a;
-}
-
-/* ================================================= */
-/* SYSTEM DARK MODE AUTO */
-/* ================================================= */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-main: #0d1117;
-    --text-main: #e6edf3;
-    --card-bg: #161b22;
-    --border-color: #30363d;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-
-    --heading: #f0f6fc;
-    --label: #c9d1d9;
-
-    --input-bg: #0d1117;
-    --input-text: #e6edf3;
-    --input-border: #30363d;
-    --input-placeholder: #8b949e;
-    --focus-border: #58a6ff;
-
-    --btn-primary: #238636;
-    --btn-primary-hover: #2ea043;
-
-    --btn-success: #1f6feb;
-    --btn-success-hover: #388bfd;
-
-    --link: #58a6ff;
-    --muted-text: #c9d1d9;
-  }
-}
-
-/* ================================================= */
-/* MANUAL THEME OVERRIDES (PURE CSS) */
-/* ================================================= */
-
-/* ---------- MANUAL LIGHT ---------- */
-#theme-light:checked ~ * {
-  --bg-main: #f6f8fa;
-  --text-main: #1f2328;
-  --card-bg: #ffffff;
-  --border-color: #d0d7de;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-
-  --heading: #1f2328;
-  --label: #57606a;
-
-  --input-bg: #ffffff;
-  --input-text: #1f2328;
-  --input-border: #d0d7de;
-  --input-placeholder: #6e7781;
-  --focus-border: #0969da;
-
-  --btn-primary: #2da44e;
-  --btn-primary-hover: #2c974b;
-
-  --btn-success: #0969da;
-  --btn-success-hover: #218bff;
-
-  --link: #0969da;
-  --muted-text: #57606a;
-}
-
-/* ---------- MANUAL DARK ---------- */
-#theme-dark:checked ~ * {
   --bg-main: #0d1117;
   --text-main: #e6edf3;
   --card-bg: #161b22;
@@ -118,137 +28,107 @@
   --muted-text: #c9d1d9;
 }
 
-/* ---------- SYSTEM MODE ---------- */
-#theme-system:checked ~ * {
-  
-  /* system media query controls theme */
-}
-
 /* ================================================= */
-/* GLOBAL STYLES */
+/* GLOBAL */
 /* ================================================= */
 
-body {
-  background-color: var(--bg-main);
-  color: var(--text-main);
+html, body {
+  background-color: var(--bg-main) !important;
+  color: var(--text-main) !important;
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* Auth Card */
-.auth-card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+/* Container background fix */
+.container {
+  background-color: transparent !important;
+}
+
+/* ================================================= */
+/* CARD (BOOTSTRAP OVERRIDE) */
+/* ================================================= */
+
+.card.auth-card {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
   border-radius: 14px;
-  color: var(--text-main);
+  color: var(--text-main) !important;
 }
 
 /* Shadow */
-.shadow {
+.card.auth-card.shadow {
   box-shadow: var(--shadow) !important;
 }
 
-/* Headings */
+/* ================================================= */
+/* TEXT */
+/* ================================================= */
+
 .auth-card h3 {
-  color: var(--heading);
+  color: var(--heading) !important;
   font-weight: 600;
 }
 
-/* Labels */
 .form-label {
-  color: var(--label);
+  color: var(--label) !important;
 }
 
-/* Inputs */
+.text-center {
+  color: var(--muted-text) !important;
+}
+
+/* ================================================= */
+/* INPUTS */
+/* ================================================= */
+
 .form-control {
-  background-color: var(--input-bg);
-  border: 1px solid var(--input-border);
-  color: var(--input-text);
+  background-color: var(--input-bg) !important;
+  border: 1px solid var(--input-border) !important;
+  color: var(--input-text) !important;
   border-radius: 10px;
 }
 
 .form-control::placeholder {
-  color: var(--input-placeholder);
+  color: var(--input-placeholder) !important;
 }
 
 .form-control:focus {
-  background-color: var(--input-bg);
-  color: var(--input-text);
-  border-color: var(--focus-border);
-  box-shadow: none;
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border-color: var(--focus-border) !important;
+  box-shadow: 0 0 0 1px var(--focus-border) !important;
 }
 
-/* Buttons */
-.btn-primary {
-  background-color: var(--btn-primary);
-  border: none;
+/* ================================================= */
+/* BUTTONS */
+/* ================================================= */
+
+.btn.btn-primary {
+  background-color: var(--btn-primary) !important;
+  border: none !important;
 }
 
-.btn-primary:hover {
-  background-color: var(--btn-primary-hover);
+.btn.btn-primary:hover {
+  background-color: var(--btn-primary-hover) !important;
 }
 
-.btn-success {
-  background-color: var(--btn-success);
-  border: none;
+.btn.btn-success {
+  background-color: var(--btn-success) !important;
+  border: none !important;
 }
 
-.btn-success:hover {
-  background-color: var(--btn-success-hover);
+.btn.btn-success:hover {
+  background-color: var(--btn-success-hover) !important;
 }
 
-/* Links */
+/* ================================================= */
+/* LINKS */
+/* ================================================= */
+
 a {
-  color: var(--link);
+  color: var(--link) !important;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
-}
-
-/* Muted text */
-.text-center {
-  color: var(--muted-text);
-}
-
-/* ================================================= */
-/* THEME TOGGLE UI */
-/* ================================================= */
-
-.theme-switcher {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 6px;
-  display: flex;
-  gap: 6px;
-  box-shadow: var(--shadow);
-  z-index: 9999;
-}
-
-.theme-switcher input {
-  display: none;
-}
-
-.theme-switcher label {
-  cursor: pointer;
-  font-size: 18px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  color: var(--text-main);
-  transition: 0.2s ease;
-}
-
-.theme-switcher label:hover {
-  background: rgba(100,100,100,0.15);
-}
-
-/* Active indicator */
-#theme-light:checked + input + input + label,
-#theme-dark:checked + input + label,
-#theme-system:checked + label {
-  background: rgba(100,100,100,0.25);
 }
