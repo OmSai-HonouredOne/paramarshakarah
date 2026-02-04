@@ -16,3 +16,31 @@ def index():
 @login_required
 def dashboard():
     return render_template('guidance/dashboard.html', user=g.user)
+
+@bp.route('/dashboard/edit', methods=('GET', 'POST'))
+@login_required
+def edit_profile():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        skills = request.form['skills']
+        target_jobs = request.form['target_jobs']
+        error = None
+
+        if error is None:
+            if target_jobs==','.join(g.user['target_jobs']) and skills==','.join(g.user['skills']):
+                execute(
+                    'UPDATE users SET name = %s, email = %s WHERE regno = %s',
+                    (name, email, g.user['regno'])
+                )
+            else:
+                llm_output = llm(skills, target_jobs)
+                execute(
+                    'UPDATE users SET name = %s, email = %s, skills = %s, target_jobs = %s, eligible = %s, skills_to_learn = %s, courses = %s, bonus_skills = %s, bonus_skills_courses = %s WHERE regno = %s',
+                    (name, email, skills, target_jobs, ','.join(llm_output[0]), ','.join(llm_output[1]), ','.join(llm_output[2]), ','.join(llm_output[3]), ','.join(llm_output[4]), g.user['regno'])
+                )
+            return redirect(url_for('guidance.dashboard'))
+
+        flash(error)
+
+    return render_template('guidance/edit.html', user=g.user)

@@ -21,7 +21,11 @@
     </p>
 
     <div class="hero-buttons" id="login-area">
-      <a href="login.html" class="btn btn-primary">Login</a>
+      {% if g.user %}
+        <a href="{{ url_for('guidance.dashboard') }}" class="btn btn-primary">Dashboard</a>
+      {% else %}
+        <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Login</a>
+      {% endif %}
       <button class="btn btn-outline" onclick="scrollToSection()">Learn More</button>
     </div>
   </div>

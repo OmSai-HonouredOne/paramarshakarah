@@ -59,7 +59,7 @@ def login():
         if error is None:
             session.clear()
             session['regno'] = user['regno']
-            return redirect(url_for('index'))
+            return redirect(url_for('guidance.dashboard'))
 
         flash(error)
 

@@ -31,7 +31,7 @@
       <!-- <span class="username">{{ user['name'] }}</span> -->
 
       <div class="nav-actions">
-        <a href="edit.html" class="nav-btn edit-btn">Edit</a>
+        <a href="{{ url_for('guidance.edit_profile') }}" class="nav-btn edit-btn">Edit</a>
         <a href="{{ url_for('auth.logout') }}" class="nav-btn logout-btn">Logout</a>
       </div>
     </div>
@@ -40,7 +40,7 @@
   <!-- ================= BREADCRUMB ================= -->
   <div class="breadcrumb-container">
     <div class="breadcrumb">
-      <a href="#">Home</a><span class="sep">›</span>
+      <a href="{{ url_for('guidance.index') }}">Home</a><span class="sep">›</span>
       <a href="#">Dashboard</a>
     </div>
   </div>
