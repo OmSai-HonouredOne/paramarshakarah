@@ -15,6 +15,7 @@ def index():
 @bp.route('/dashboard')
 @login_required
 def dashboard():
+    print(g.user['roadmap'])
     return render_template('guidance/dashboard.html', user=g.user)
 
 @bp.route('/dashboard/edit', methods=('GET', 'POST'))

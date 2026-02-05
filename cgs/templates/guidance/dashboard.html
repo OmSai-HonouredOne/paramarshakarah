@@ -134,6 +134,33 @@
 
     </div>
   </main>
+  <!-- ================= ROADMAP FLOWCHART ================= -->
+<section class="dashboard-section">
+  <h2 class="section-title">Learning Roadmap</h2>
+
+  <div class="roadmap-vertical">
+
+    {% for step in user['roadmap'][:-1] %}
+    <div class="roadmap-step">
+
+      <div class="roadmap-node
+        {% if loop.first %} completed
+        {% elif loop.last %} goal
+        {% else %} pending
+        {% endif %}">
+        {{ step }}
+      </div>
+
+      {% if not loop.last %}
+      <div class="roadmap-arrow-vertical"></div>
+      {% endif %}
+
+    </div>
+    {% endfor %}
+
+  </div>
+</section>
+
 
   <!-- ================= FOOTER ================= -->
   <footer class="footer">
@@ -153,18 +180,18 @@
 
     </div>
   </footer>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const menuToggle = document.getElementById("menuToggle");
-    const navMenu = document.getElementById("navMenu");
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const menuToggle = document.getElementById("menuToggle");
+      const navMenu = document.getElementById("navMenu");
 
-    if(menuToggle && navMenu){
-      menuToggle.addEventListener("click", () => {
-        navMenu.classList.toggle("active");
-      });
-    }
-  });
-</script>
+      if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", () => {
+          navMenu.classList.toggle("active");
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>

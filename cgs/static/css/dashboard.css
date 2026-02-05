@@ -219,3 +219,82 @@ img{
   .skill-row{font-size:13px;}
   .footer-text{text-align:left;}
 }
+/* ================= ROADMAP (VERTICAL) ================= */
+
+.roadmap-vertical{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
+  margin-top:30px;
+}
+
+/* Each step wrapper */
+.roadmap-step{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* ================= NODES ================= */
+
+.roadmap-node{
+  padding:16px 26px;
+  border-radius:16px;
+  background:#020617;
+  border:1px solid rgba(56,189,248,0.35);
+  font-size:14px;
+  font-weight:500;
+  text-align:center;
+  max-width:520px;
+  box-shadow:0 0 25px rgba(56,189,248,0.08);
+  transition:0.3s ease;
+}
+
+.roadmap-node:hover{
+  transform:translateY(-4px);
+  box-shadow:0 0 40px rgba(56,189,248,0.3);
+}
+
+/* ================= STATUS COLORS ================= */
+
+.roadmap-node.completed{
+  border-color:#22c55e;
+  color:#22c55e;
+  background:rgba(34,197,94,0.08);
+}
+
+.roadmap-node.pending{
+  border-color:#f97316;
+  color:#f97316;
+  background:rgba(249,115,22,0.08);
+}
+
+.roadmap-node.goal{
+  border-color:#38bdf8;
+  color:#38bdf8;
+  font-weight:700;
+  background:rgba(56,189,248,0.12);
+}
+
+/* ================= VERTICAL ARROW ================= */
+
+.roadmap-arrow-vertical{
+  width:2px;
+  height:34px;
+  background:#38bdf8;
+  position:relative;
+  margin:8px 0;
+}
+
+.roadmap-arrow-vertical::after{
+  content:'';
+  position:absolute;
+  bottom:-6px;
+  left:-5px;
+  width:0;
+  height:0;
+  border-top:8px solid #38bdf8;
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+}

@@ -83,6 +83,7 @@ def load_logged_in_user():
         g.user['bonus_skills'] = g.user['bonus_skills'].split(',')
         g.user['bonus_skills_courses'] = g.user['bonus_skills_courses'].split(',')
         g.user['roadmap'] = g.user['roadmap'].split('.')
+        
     
 
 @bp.route('/logout')
