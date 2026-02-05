@@ -79,9 +79,9 @@
             </div>
             {% for i in range(user['target_jobs']|length) %}
             <div class="skill-row">{{ user['target_jobs'][i] }}
-              {% if user['eligible'][i] == '2' %}
+              {% if user['eligible'][i] >= '85' %}
               <span class="badge green">Eligible</span>
-              {% elif user['eligible'][i] == '1' %}
+              {% elif user['eligible'][i] >= '50' %}
               <span class="badge orange">Close</span>
               {% else %}
               <span class="badge red">Not Eligible</span>
