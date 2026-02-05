@@ -44,4 +44,10 @@ def edit_profile():
 
         flash(error)
 
+
     return render_template('guidance/edit.html', user=g.user)
+
+
+@bp.route('/coverletter')
+def coverletter():
+    return render_template('guidance/coverletter.html',user=g.user)
