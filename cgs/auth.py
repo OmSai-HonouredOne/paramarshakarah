@@ -30,8 +30,8 @@ def register():
         if error is None:
             llm_output = llm(skills, target_jobs)
             execute(
-                'INSERT INTO users (regno, name, email, password, skills, target_jobs, eligible, skills_to_learn, courses, bonus_skills, bonus_skills_courses) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
-                (regno, name, email, generate_password_hash(password), skills, target_jobs, ','.join(llm_output[0]), ','.join(llm_output[1]), ','.join(llm_output[2]), ','.join(llm_output[3]), ','.join(llm_output[4]))
+                'INSERT INTO users (regno, name, email, password, skills, target_jobs, eligible, skills_to_learn, courses, bonus_skills, bonus_skills_courses, roadmap) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)',
+                (regno, name, email, generate_password_hash(password), skills, target_jobs, ','.join(llm_output[0]), ','.join(llm_output[1]), ','.join(llm_output[2]), ','.join(llm_output[3]), ','.join(llm_output[4]), llm_output[5])
             )
 
             return redirect(url_for('auth.login'))
@@ -82,6 +82,7 @@ def load_logged_in_user():
         g.user['courses'] = g.user['courses'].split(',')
         g.user['bonus_skills'] = g.user['bonus_skills'].split(',')
         g.user['bonus_skills_courses'] = g.user['bonus_skills_courses'].split(',')
+        g.user['roadmap'] = g.user['roadmap'].split('.')
     
 
 @bp.route('/logout')

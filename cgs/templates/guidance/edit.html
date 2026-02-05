@@ -1,67 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Edit Dashboard | CareerPath AI</title>
 
-<link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/edit.css') }}">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Dashboard | CareerPath AI</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/edit.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="nav-left">CareerPath AI</div>
-  <div class="nav-right">
-    <span class="username">{{ user['name'] }}</span>
-    <a href="{{ url_for('guidance.dashboard') }}" class="logout">Back</a>
-  </div>
-</nav>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">CareerPath AI</div>
+    <div class="nav-right">
+      <span class="username">{{ user['name'] }}</span>
+      <a href="{{ url_for('guidance.dashboard') }}" class="logout">Back</a>
+    </div>
+  </nav>
 
-<!-- BREADCRUMB -->
-<div class="breadcrumb-container">
-  <div class="breadcrumb" id="breadcrumb"></div>
-</div>
-
-<!-- EDIT CONTAINER -->
-<main class="edit-container">
-
-  <div class="edit-card">
-    <h2 id="editTitle">Edit</h2>
-
-    <form class="edit-form" method="POST" action="{{ url_for('guidance.edit_profile') }}">
-
-      <!-- Profile -->
-      <div class="edit-section" id="profileSection">
-        <label>Name</label>
-        <input type="text" name="name" value="{{ user['name'] }}">
-
-        <label>Reg No</label>
-        <input type="text" value="{{ user['regno'] }}" disabled>
-
-        <label>Email</label>
-        <input type="email" name="email" value="{{ user['email'] }}">
-
-        <label>Skills</label>
-        <input type="text" name="skills" value="{{ user['skills']|join(',') }}">
-
-        <label>Target Jobs</label>
-        <input type="text" name="target_jobs" value="{{ user['target_jobs']|join(',') }}">
-      </div>
-
-      <!-- ACTIONS -->
-      <div class="form-actions">
-        <a href="{{ url_for('guidance.dashboard') }}" class="cancel-btn">Cancel</a>
-        <button type="submit" class="save-btn">Save Changes</button>
-      </div>
-
-    </form>
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb-container">
+    <div class="breadcrumb" id="breadcrumb"></div>
   </div>
 
-</main>
+  <!-- EDIT CONTAINER -->
+  <main class="edit-container">
+
+    <div class="edit-card">
+      <h2 id="editTitle">Edit</h2>
+
+      <form class="edit-form" method="POST" action="{{ url_for('guidance.edit_profile') }}">
+
+        <!-- Profile -->
+        <div class="edit-section" id="profileSection">
+          <label>Name</label>
+          <input type="text" name="name" value="{{ user['name'] }}">
+
+          <label>Reg No</label>
+          <input type="text" value="{{ user['regno'] }}" disabled>
+
+          <label>Email</label>
+          <input type="email" name="email" value="{{ user['email'] }}">
+
+          <label>Skills</label>
+          <input type="text" name="skills" value="{{ user['skills']|join(',') }}">
+
+          <label>Target Jobs</label>
+          <input type="text" name="target_jobs" value="{{ user['target_jobs']|join(',') }}">
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="form-actions">
+          <a href="{{ url_for('guidance.dashboard') }}" class="cancel-btn">Cancel</a>
+          <button type="submit" class="save-btn">Save Changes</button>
+        </div>
+
+      </form>
+    </div>
+
+  </main>
 
 </body>
-</html>
 
+</html>
