@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CareerPath AI | Dashboard</title>
+  <title>Paramarshakarah | Dashboard</title>
 
   <link rel="stylesheet" href='{{ url_for("static", filename="css/navbar.css")}}'>
   <link rel="stylesheet" href='{{ url_for("static",filename="css/dashboard.css")}}'>
@@ -35,10 +35,22 @@
         <a href="{{ url_for('auth.logout') }}" class="nav-btn logout-btn">Logout</a>
       </div>
     </div>
-    <a href="{{ url_for('guidance.coverletter') }}" class="nav-btn">
-  Generate Cover Letter
-</a>
+    {% set show_coverletter = false %}
 
+{% for score in user['eligible'] %}
+  {% if score|int >= 50 %}
+    {% set show_coverletter = true %}
+  {% endif %}
+{% endfor %}
+
+{% if show_coverletter %}
+  <a href="{{ url_for('guidance.coverletter') }}" class="nav-btn">
+    Generate Cover Letter
+  </a>
+{% endif %}
+
+
+ 
   </nav>
 
   <!-- ================= BREADCRUMB ================= -->
