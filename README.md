@@ -1,4 +1,4 @@
-# Paramarshakarah (परामर्शकराः)
+# Paramarshakarah (परामर्शकारः)
 
 A comprehensive AI-driven career counseling system designed to bridge the gap between current skills and professional goals. **Paramarshakarah** (The Counselors) leverages advanced language models to provide personalized career roadmaps and educational guidance.
 
